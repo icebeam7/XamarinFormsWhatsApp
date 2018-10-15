@@ -13,5 +13,10 @@ namespace XamarinWhatsApp
 		{
 			InitializeComponent();
 		}
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
 	}
 }

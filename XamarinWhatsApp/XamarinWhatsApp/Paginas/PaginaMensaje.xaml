@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamarinWhatsApp.Paginas.PaginaMensaje" Title="Xamarin y WhatsApp">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <OnPlatform 
+                x:Key="FontAwesome5" 
+                x:TypeArguments="x:String" 
+                Android="fa-regular-400.ttf#Font Awesome 5 Free Regular" 
+                iOS="Font Awesome 5 Free" 
+                WinPhone="Assets/fa-regular-400.ttf#Font Awesome 5 Free" />
+
+            <Style TargetType="Label" x:Key="labelStyle">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontFamily" Value="{DynamicResource FontAwesome5}"/>
+            </Style>
+
+            <Style TargetType="Entry" x:Key="entryStyle">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+
+            <Style TargetType="Button" x:Key="buttonStyle">
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontFamily" Value="{DynamicResource FontAwesome5}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Style="{StaticResource labelStyle}" Grid.Row="1" Grid.Column="1" Text="&#xf580;" TextColor="Orange"/>
+            <Entry Style="{StaticResource entryStyle}" Grid.Row="1" Grid.Column="2" x:Name="txtFrom" Placeholder="De: " Keyboard="Telephone"/>
+
+            <Label Style="{StaticResource labelStyle}" Grid.Row="2" Grid.Column="1" Text="&#xf007;" TextColor="Blue"/>
+            <Entry Style="{StaticResource entryStyle}" Grid.Row="2" Grid.Column="2" x:Name="txtTo" Placeholder="Para: " Keyboard="Telephone"/>
+
+            <Label Style="{StaticResource labelStyle}" Grid.Row="3" Grid.Column="1" Text="&#xf075;" TextColor="Gray"/>
+            <Entry Style="{StaticResource entryStyle}" Grid.Row="3" Grid.Column="2" x:Name="txtBody" Placeholder="Mensaje" Keyboard="Chat"/>
+            <Button Style="{StaticResource buttonStyle}" Grid.Row="3" Grid.Column="3" x:Name="btnEnviar" Text="&#xf1d8;" TextColor="Green" Clicked="btnEnviar_Clicked"/>
+
+            <ScrollView Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2">
+                <ListView x:Name="lsvMensajes" 
+                          VerticalOptions="FillAndExpand"
+                          HasUnevenRows="True"
+                          Margin="3">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="5">
+                                    <Label Text="{Binding To}" TextColor="Blue" FontSize="Small" Margin="2"/>
+                                    <Label Text="{Binding Body}" TextColor="Black" FontSize="Small" Margin="2"/>
+                                    <Label Text="{Binding Sid}" TextColor="Gray" FontSize="Small" Margin="2"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

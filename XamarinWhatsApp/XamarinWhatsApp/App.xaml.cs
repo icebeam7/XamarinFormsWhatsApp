@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using Twilio;
 using Xamarin.Forms;
+using XamarinWhatsApp.Helpers;
 
 namespace XamarinWhatsApp
 {
@@ -13,22 +10,8 @@ namespace XamarinWhatsApp
 		{
 			InitializeComponent();
 
-			MainPage = new XamarinWhatsApp.MainPage();
-		}
-
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
-
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
-
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
+            TwilioClient.Init(Constantes.TwilioAccountSID, Constantes.TwilioAuthToken);
+            MainPage = new XamarinWhatsApp.Paginas.PaginaMensaje();
 		}
 	}
 }
